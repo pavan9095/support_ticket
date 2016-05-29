@@ -1,0 +1,71 @@
+<html>
+<head>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$.ajax({
+				url:"https://api.github.com/repos/vmg/redcarpet/issues?state=open",
+				type:"GET",
+				success:function(res){
+					var js = JSON.stringify(res);
+					var json = JSON.parse(js);
+					$("#ttlIssues").text(json.length);
+					// $("#divJs").append(js);
+					var todayCnt = 0;
+					var weekCnt = 0;
+					var gWeekCnt = 0;
+					$.each(json,function(i){
+						var jsTime = new Date(json[i]['created_at']).getTime();
+						var time = new Date().getTime();
+						if(time-86400 < jsTime){
+							todayCnt++;
+						}
+						else if(jsTime > time-86400 && jsTime < time-(7*86400)){
+							weekCnt++;
+						}
+						else{
+							gWeekCnt++;
+						}
+						$("#tdayIssues").text(todayCnt);
+						$("#weekIssues").text(weekCnt);
+						$("#gWeekIssues").text(gWeekCnt);
+						// $("#divJs").append('<p>'+json[i]['title']+', '+json[i]['created_at']+'</p>');
+					});
+				}
+			});
+		});
+	</script>
+	<style type="text/css">
+		table,tr,td {
+			padding: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div id="divJs">
+		
+	</div>
+	<table border="1" style="border-collapse: collapse;">
+		<tr>
+			<td><h3>Total Number of open issues</h3></td>
+			<td>:</td>
+			<td><h3 id="ttlIssues"></h3></td>
+		</tr>
+		<tr>
+			<td><h3>Number of open issues in 24 hours</h3></td>
+			<td>:</td>
+			<td><h3 id="tdayIssues"></h3></td>
+		</tr>
+		<tr>
+			<td><h3>Number of open issues in 24 hours less than 7 days</h3></td>
+			<td>:</td>
+			<td><h3 id="weekIssues"></h3></td>
+		</tr>
+		<tr>
+			<td><h3>Number of open issues more than 7 days</h3></td>
+			<td>:</td>
+			<td><h3 id="gWeekIssues"></h3></td>
+		</tr>
+	</table>
+</body>
+</html>

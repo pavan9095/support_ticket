@@ -35,9 +35,4 @@ function getOpenIssues(){
 			});
 		}
 	});
-	var issues = new Array();
-        issues['t'] = todayCnt;
-        issues['w'] = weekCnt;
-        issues['g'] = gWeekCnt;
-    return issues;
 }

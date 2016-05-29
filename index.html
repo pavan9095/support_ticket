@@ -1,35 +1,45 @@
-<html>
+<html><?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
+	<title>Open-issues</title>
+	<!-- include jquery plugin-->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$.ajax({
+			$.ajax({ 
+				//get "open" state issues from github repository.
 				url:"https://api.github.com/repos/vmg/redcarpet/issues?state=open",
 				type:"GET",
 				success:function(res){
+					//convertsto a JSON string.
 					var js = JSON.stringify(res);
+					//converts JSON array.
 					var json = JSON.parse(js);
 					$("#ttlIssues").text(json.length);
-					// $("#divJs").append(js);
 					var todayCnt = 0;
 					var weekCnt = 0;
 					var gWeekCnt = 0;
+					//each loop 
 					$.each(json,function(i){
 						var jsTime = new Date(json[i]['created_at']).getTime();
+						//getTime() method returns the number of milliseconds
 						var time = new Date().getTime();
+						//Today issues
 						if(time-86400 < jsTime){
 							todayCnt++;
 						}
+						//Befor one week issues
 						else if(jsTime > time-86400 && jsTime < time-(7*86400)){
 							weekCnt++;
 						}
 						else{
 							gWeekCnt++;
 						}
+						//display count in rows
 						$("#tdayIssues").text(todayCnt);
 						$("#weekIssues").text(weekCnt);
 						$("#gWeekIssues").text(gWeekCnt);
-						// $("#divJs").append('<p>'+json[i]['title']+', '+json[i]['created_at']+'</p>');
 					});
 				}
 			});
@@ -42,28 +52,25 @@
 	</style>
 </head>
 <body>
-	<div id="divJs">
-		
-	</div>
-	<table border="1" style="border-collapse: collapse;">
+	<table border="1" style="border-collapse: collapse;" align="center">
 		<tr>
-			<td><h3>Total Number of open issues</h3></td>
-			<td>:</td>
+			<td><b>Description</b></td>
+			<td><b>Count</b></td>
+		</tr>
+		<tr>
+			<td>Total Number of open issues</td>
 			<td><h3 id="ttlIssues"></h3></td>
 		</tr>
 		<tr>
-			<td><h3>Number of open issues in 24 hours</h3></td>
-			<td>:</td>
+			<td>Number of open issues in 24 hours</td>
 			<td><h3 id="tdayIssues"></h3></td>
 		</tr>
 		<tr>
-			<td><h3>Number of open issues in 24 hours less than 7 days</h3></td>
-			<td>:</td>
+			<td>Number of open issues in 24 hours less than 7 days</td>
 			<td><h3 id="weekIssues"></h3></td>
 		</tr>
 		<tr>
-			<td><h3>Number of open issues more than 7 days</h3></td>
-			<td>:</td>
+			<td>Number of open issues more than 7 days</td>
 			<td><h3 id="gWeekIssues"></h3></td>
 		</tr>
 	</table>

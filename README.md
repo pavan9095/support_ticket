@@ -3,6 +3,8 @@ Details of open issues.
 
 Include the Jquery plugin.
 
+Include openissues.js.
+
 Get "open" status issues from github repository using below url.
   https://api.github.com/repos/vmg/redcarpet/issues?state=open
 

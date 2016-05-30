@@ -3,11 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<title>Open-issues</title>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			getOpenIssues();
-		});
-	</script>
 	<style type="text/css">
 		table,tr,td {
 			padding: 20px;
@@ -39,6 +34,11 @@
 	</table>
 </body>
 <!-- include jquery plugin-->
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<script type="text/javascript" src="openissues.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<script type="text/javascript" src="openissues.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			getOpenIssues();
+		});
+	</script>
 </html>

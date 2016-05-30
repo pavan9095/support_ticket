@@ -18,11 +18,11 @@ function getOpenIssues(){
 				//getTime() method returns the number of milliseconds
 				var time = new Date().getTime();
 				//Today issues
-				if(time-86400 < jsTime){
+				if(time-86400000 < jsTime){
 					todayCnt++;
 				}
 				//Befor one week issues
-				else if(jsTime > time-86400 && jsTime < time-(7*86400)){
+				else if(jsTime > time-86400000 && jsTime < time-604800000){
 					weekCnt++;
 				}
 				else{

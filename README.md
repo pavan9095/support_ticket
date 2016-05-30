@@ -6,7 +6,7 @@ Include the Jquery plugin.
 Include openissues.js.
 
 Get "open" status issues from github repository using below url.
-  https://api.github.com/repos/vmg/redcarpet/issues?state=open
+  https://api.github.com/repos/Shippable/support/issues?state=open
 
 Using Ajax "GET" request.
 

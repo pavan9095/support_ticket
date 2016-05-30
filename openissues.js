@@ -1,7 +1,7 @@
 function getOpenIssues(){
 	$.ajax({ 
 		//get "open" state issues from github repository.
-		url:"https://api.github.com/repos/vmg/redcarpet/issues?state=open",
+		url:"https://api.github.com/repos/Shippable/support/issues?state=open",
 		type:"GET",
 		success:function(res){
 			//convertsto a JSON string.
@@ -18,11 +18,11 @@ function getOpenIssues(){
 				//getTime() method returns the number of milliseconds
 				var time = new Date().getTime();
 				//Today issues
-				if(time-86400000 < jsTime){
+				if((time-86400000) < jsTime){
 					todayCnt++;
 				}
 				//Befor one week issues
-				else if(jsTime > time-86400000 && jsTime < time-604800000){
+				else if(jsTime < time-86400000 && jsTime > (time-604800000)){
 					weekCnt++;
 				}
 				else{
